@@ -33,7 +33,7 @@ builder.ConfigureServices(services =>
 {
     services
         .AddSingleton<OSCReceiver>()
-        .AddSingleton<IPollable>(c => c.GetRequiredService<OSCReceiver>()) // We do the second registration to make sure it gets registered as an IPollable
+        .AddSingleton<IPollable>(c => c.GetRequiredService<OSCReceiver>()) // We do the second registration to make sure it gets registered as an IPollable. I might switch the DI framework in the future to make this better.
         .AddSingleton<IOSCReceiver>(c => c.GetRequiredService<OSCReceiver>()) 
     ;
 
