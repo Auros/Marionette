@@ -1,6 +1,9 @@
-﻿using Marionette.Daemon.Interfaces;
+﻿using LiteNetwork.Hosting;
+using LiteNetwork.Server.Hosting;
+using Marionette.Daemon.Interfaces;
 using Marionette.Daemon.Networking.OSC;
 using Marionette.Daemon.Services.Hosted;
+using Marionette.Networking.Local;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -43,9 +46,20 @@ builder.ConfigureServices(services =>
     services.AddHostedService<PollingService>();
 });
 
+builder.ConfigureLiteNetwork(lite =>
+{
+    lite.AddLiteServer<LocalMarionetteServer>(options =>
+    {
+        options.Host = "localhost";
+        options.Port = 39554;
+    });
+});
+
 var host = builder.UseConsoleLifetime().Build();
 
 host.Services.GetRequiredService<Test>();
+
+
 
 await host.RunAsync();
 

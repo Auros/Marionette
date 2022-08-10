@@ -5,7 +5,9 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marionette.Daemon", "Marionette.Daemon\Marionette.Daemon.csproj", "{03161947-E4D3-4C2D-8E0E-CD28311EC8BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marionette.Client", "Marionette.Client\Marionette.Client.csproj", "{3BBDE652-3AC5-4A95-BADB-F9D408E5E6F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marionette.Client", "Marionette.Client\Marionette.Client.csproj", "{3BBDE652-3AC5-4A95-BADB-F9D408E5E6F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marionette.Shared", "Marionette.Shared\Marionette.Shared.csproj", "{131CB00B-6B7C-4787-9F1A-8ED1E25F2430}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3BBDE652-3AC5-4A95-BADB-F9D408E5E6F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BBDE652-3AC5-4A95-BADB-F9D408E5E6F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BBDE652-3AC5-4A95-BADB-F9D408E5E6F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{131CB00B-6B7C-4787-9F1A-8ED1E25F2430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{131CB00B-6B7C-4787-9F1A-8ED1E25F2430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{131CB00B-6B7C-4787-9F1A-8ED1E25F2430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{131CB00B-6B7C-4787-9F1A-8ED1E25F2430}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
