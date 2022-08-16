@@ -1,7 +1,5 @@
 using Avalonia;
-using LiteNetwork.Client.Hosting;
-using LiteNetwork.Hosting;
-using Marionette.Networking;
+using Marionette.Services.Hosted;
 using Marionette.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,7 +20,6 @@ internal class Program
     {
         var builder = Host.CreateDefaultBuilder(args);
         builder
-            .ConfigureLiteNetwork(ConfigureNetwork)
             .ConfigureServices(ConfigureServices)
         ;
 
@@ -48,14 +45,7 @@ internal class Program
     private static void ConfigureServices(HostBuilderContext ctx, IServiceCollection services)
     {
         services.AddSingleton<MainWindowViewModel>();
-    }
 
-    private static void ConfigureNetwork(HostBuilderContext ctx, ILiteBuilder lite)
-    {
-        lite.AddLiteClient<LocalMarionetteClient>(options =>
-        {
-            options.Host = "localhost";
-            options.Port = 39554;
-        });
+        services.AddHostedService<StateManager>();
     }
 }

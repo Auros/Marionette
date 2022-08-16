@@ -2,5 +2,5 @@
 
 internal interface IPollable
 {
-    void Poll(CancellationToken cancellationToken = default);
+    void Poll(CancellationToken cancellationToken);
 }

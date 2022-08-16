@@ -1,16 +1,11 @@
-﻿using LiteNetwork.Hosting;
-using LiteNetwork.Server.Hosting;
-using Marionette.Daemon.Interfaces;
+﻿using Marionette.Daemon.Interfaces;
 using Marionette.Daemon.Networking.OSC;
 using Marionette.Daemon.Services.Hosted;
-using Marionette.Networking.Local;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using OscCore;
 using Serilog;
 using Serilog.Extensions.Logging;
-using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 HostBuilder builder = new();
 
@@ -37,52 +32,14 @@ builder.ConfigureServices(services =>
     services
         .AddSingleton<OSCReceiver>()
         .AddSingleton<IPollable>(c => c.GetRequiredService<OSCReceiver>()) // We do the second registration to make sure it gets registered as an IPollable. I might switch the DI framework in the future to make this better.
-        .AddSingleton<IOSCReceiver>(c => c.GetRequiredService<OSCReceiver>()) 
+        .AddSingleton<IOSCReceiver>(c => c.GetRequiredService<OSCReceiver>())
     ;
-
-    services.AddSingleton<Test>();
 
     // Register our background services
     services.AddHostedService<PollingService>();
-});
-
-builder.ConfigureLiteNetwork(lite =>
-{
-    lite.AddLiteServer<LocalMarionetteServer>(options =>
-    {
-        options.Host = "localhost";
-        options.Port = 39554;
-    });
+    services.AddHostedService<StateManager>();
 });
 
 var host = builder.UseConsoleLifetime().Build();
 
-host.Services.GetRequiredService<Test>();
-
-
-
 await host.RunAsync();
-
-
-class Test
-{
-    private readonly ILogger _logger;
-    private readonly IOSCReceiver _receiver;
-
-    public Test(ILogger<Test> logger, IOSCReceiver receiver)
-    {
-        _logger = logger;
-        _receiver = receiver;
-        _receiver.Subscribe("*", MessageReceived);
-    }
-
-    ~Test()
-    {
-        _receiver.Unsubscribe("*", MessageReceived);
-    }
-
-    private void MessageReceived(OscMessage msg)
-    {
-        _logger.LogInformation("Received message from subscription!");
-    }
-}

@@ -6,4 +6,6 @@ namespace Marionette.ViewModels;
 public partial class MainWindowViewModel
 {
     public string Hello => "Hello!";
+
+    public MainWindowViewModel() { }
 }

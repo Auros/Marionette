@@ -66,9 +66,6 @@ internal class OSCReceiver : IOSCReceiver, IPollable, IDisposable
 
     private void DataReceived(byte[] buffer)
     {
-        _logger.LogInformation("Received Packet, Count = {PacketCount}", buffer.Length);
-        _logger.LogInformation("Data: {Data}", Encoding.ASCII.GetString(buffer));
-
         OscMessage? message = null;
 
         for (int i = 0; i < _compiledAddresses.Count; i++)
