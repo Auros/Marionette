@@ -45,6 +45,8 @@ internal class Program
     private static void ConfigureServices(HostBuilderContext ctx, IServiceCollection services)
     {
         services.AddSingleton<MainWindowViewModel>();
+        services.AddSingleton<SettingsViewModel>();
+        services.AddSingleton<InfoViewModel>();
 
         services.AddHostedService<StateManager>();
     }

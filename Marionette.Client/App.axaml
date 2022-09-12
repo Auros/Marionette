@@ -10,4 +10,5 @@
   <Application.Styles>
     <FluentTheme Mode="Dark"/>
   </Application.Styles>
+  
 </Application>

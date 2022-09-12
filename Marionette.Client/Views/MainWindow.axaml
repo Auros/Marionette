@@ -5,10 +5,12 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Marionette.Views.MainWindow"
         xmlns:vm="using:Marionette.ViewModels"
+        xmlns:c="using:Marionette.Controls"
         Title="Marionette"
         TransparencyLevelHint="AcrylicBlur"
         Background="Transparent"
         ExtendClientAreaToDecorationsHint="True"
+        MinWidth="800" MinHeight="450"
         >
 
   <Design.DataContext>
@@ -19,12 +21,27 @@
     <ExperimentalAcrylicBorder IsHitTestVisible="False">
       <ExperimentalAcrylicBorder.Material>
         <ExperimentalAcrylicMaterial
-            BackgroundSource="Digger"
-            TintColor="Black"
-            TintOpacity="1"
-            MaterialOpacity="0.65" />
+             BackgroundSource="Digger"
+             TintColor="Black"
+             TintOpacity="1"
+             MaterialOpacity="0.65" />
       </ExperimentalAcrylicBorder.Material>
     </ExperimentalAcrylicBorder>
+
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="250" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <ListBox Grid.Column="0" Items="{Binding NavigationLocations}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectedItem="{Binding ActivePage}" SelectionMode="AlwaysSelected">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+      <TransitioningContentControl Grid.Column="1" DataContext="{Binding ActiveViewModel}" Content="{Binding Path=DataContext.ActiveView, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+    </Grid>
   </Panel>
   
 </Window>

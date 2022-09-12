@@ -49,7 +49,7 @@ internal class StateManager : IHostedService
                 if (socketException.SocketErrorCode is SocketError.Interrupted)
                     continue;
 
-                _logger.LogError(socketException, "An error occured while trying to reecive data");
+                _logger.LogError(socketException, "An error occured while trying to recieve data");
             }
             catch
             {
@@ -89,7 +89,7 @@ internal class StateManager : IHostedService
     {
         if (result.Buffer.Length == 4 && result.Buffer.SequenceEqual(_pong))
         {
-            _logger.LogInformation("PONG!");
+            _logger.LogDebug("PONG!");
             return;
         }
     }
