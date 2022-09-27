@@ -1,4 +1,5 @@
 using Avalonia;
+using Marionette.Services;
 using Marionette.Services.Hosted;
 using Marionette.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,7 +47,10 @@ internal class Program
     {
         services.AddSingleton<MainWindowViewModel>();
         services.AddSingleton<SettingsViewModel>();
+        services.AddSingleton<StatusViewModel>();
         services.AddSingleton<InfoViewModel>();
+
+        services.AddSingleton<LocalStateService>();
 
         services.AddHostedService<StateManager>();
     }

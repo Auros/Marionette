@@ -1,6 +1,13 @@
-﻿namespace Marionette.Services;
+﻿using System;
 
-internal class LocalStateService
+namespace Marionette.Services;
+
+public class LocalStateService
 {
+    public event Action<bool>? PingCycle;
 
+    public void UpdatePing(bool value)
+    {
+        PingCycle?.Invoke(value);
+    }
 }

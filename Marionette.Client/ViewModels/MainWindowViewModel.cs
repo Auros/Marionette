@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Marionette.Models;
 using Marionette.Views;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.ObjectModel;
 
 namespace Marionette.ViewModels;
@@ -19,10 +21,11 @@ public partial class MainWindowViewModel : ObservableObject
 
     public ObservableCollection<NavigationPageItem> NavigationLocations { get; } = new();
 
-    public MainWindowViewModel() { } /* Constructor for design */
-    public MainWindowViewModel(InfoViewModel infoViewModel, SettingsViewModel settingsViewModel)
+    public MainWindowViewModel() { } /* Constructor for Avalonia designer */
+    public MainWindowViewModel(IServiceProvider serviceProvider)
     {
-        NavigationLocations.Add(new NavigationPageItem("Info", infoViewModel));
-        NavigationLocations.Add(new NavigationPageItem("Settings", settingsViewModel));
+        NavigationLocations.Add(new NavigationPageItem("Info", serviceProvider.GetRequiredService<InfoViewModel>()));
+        NavigationLocations.Add(new NavigationPageItem("Settings", serviceProvider.GetRequiredService<SettingsViewModel>()));
+        NavigationLocations.Add(new NavigationPageItem("Status", serviceProvider.GetRequiredService<StatusViewModel>()));
     }
 }

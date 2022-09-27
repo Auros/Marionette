@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Marionette.Views.SettingsView">
+             x:Class="Marionette.Views.StatusView">
 
   <Grid>
     <Grid.RowDefinitions>
@@ -11,15 +11,14 @@
       <RowDefinition Height="120" />
     </Grid.RowDefinitions>
 
-    <TextBlock Grid.Row="0" Text="Settings" FontSize="50" />
+    <TextBlock Grid.Row="0" Text="Status" FontSize="50" />
     <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10" Margin="0,25,0,0">
-      <ListBox Items="{Binding Tests}">
-        <ListBox.ItemTemplate>
-          <DataTemplate>
-            <TextBlock Text="{Binding Name}" />
-          </DataTemplate>
-        </ListBox.ItemTemplate>
-      </ListBox>
+      <Panel Width="200" Height="120">
+        <StackPanel>
+          <TextBlock Text="Local Service" FontSize="20" />
+          <TextBlock Text="{Binding LocalServiceStatusText}" Foreground="{Binding LocalServiceStatusColor}" />
+        </StackPanel>
+      </Panel>
     </StackPanel>
   </Grid>
   
